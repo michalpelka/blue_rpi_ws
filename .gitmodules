@@ -1,0 +1,3 @@
+[submodule "src/msas_enrich_2023"]
+	path = src/msas_enrich_2023
+	url = git@github.com:michalpelka/msas_enrich_2023.git

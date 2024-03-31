@@ -1,0 +1,10 @@
+<CycloneDDS>
+   <Domain>
+     <General>
+        <Interfaces>
+          <NetworkInterface name="wlan0" />
+        </Interfaces>
+    </General>
+   </Domain>
+</CycloneDDS>
+

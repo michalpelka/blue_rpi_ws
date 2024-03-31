@@ -1,0 +1,11 @@
+[Unit]
+Description="Mandeye robot"
+
+[Service]
+User=robot
+Group=robot
+ExecStart=bash /opt/entry.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
