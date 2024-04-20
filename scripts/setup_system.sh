@@ -2,8 +2,11 @@
 
 echo "Setting up i2c group"
 sudo addgroup i2c 
+sudo addgroup dialout
 sudo usermod -aG i2c "$USER"
+sudo usermod -aG dialout "$USER"
 
+sudo apt-get install ros-humble-rmw-cyclonedds-cpp ros-humble-demo-nodes-cpp  libi2c-dev
 
 echo "Copying dds config to /opt"
 sudo cp cyclone_profile.xml /opt/
@@ -20,10 +23,10 @@ sudo cp 01-netcfg.yaml /etc/netplan/
 sudo netplan apply
 
 echo "Setting up bash.rc, really not needed"
-echo `export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp` >> ~/bash.rc
-echo `CYCLONEDDS_URI=/opt/cyclone_profile.xml` >> ~/bash.rc
-echo `ROS_DOMAIN_ID=0` >> ~/bash.rc
-
+echo 'export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp' >> ~/.bashrc
+echo 'export CYCLONEDDS_URI=file:///opt/cyclone_profile.xml' >> ~/.bashrc
+echo 'export ROS_DOMAIN_ID=0' >> ~/.bashrc
+echo 'alias b='colcon build  --cmake-args -DCMAKE_BUILD_TYPE=Release'' >> ~/.bashrc
 echo "setting up service"
 #service
 sudo cp ./service/mandeye_robot.service /etc/systemd/system/
